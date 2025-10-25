@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "support@testdb.pro"
+  default from: ENV.fetch("EMAIL_ADDRESS") { "admin@example.com" }
+
   layout "mailer"
 end

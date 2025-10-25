@@ -107,7 +107,8 @@
               <%= Date.today.year %>
               TestDB.
               All rights reserved.
-              Version 1.0.0.
+              Version 1.2.5.
+              Support: <%= link_to ENV.fetch("EMAIL_ADDRESS") { "admin@example.com" }, "mailto:#{ENV.fetch("EMAIL_ADDRESS") { "admin@example.com" }}" %>.
             </p>
           </div>
         </div>
