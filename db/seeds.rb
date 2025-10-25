@@ -9,7 +9,7 @@
 #   end
 
 # Create admin user
-admin_user = User.find_or_create_by!(email_address: "admin@example.com") do |user|
+admin_user = User.find_or_create_by!(email_address: "support@testdb.pro") do |user|
   user.admin = true
   user.password = "password"
   user.password_confirmation = "password"
