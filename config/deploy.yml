@@ -67,7 +67,6 @@ aliases:
 volumes:
   - "test_plans_storage:/rails/storage"
 
-
 # Bridge fingerprinted assets, like JS and CSS, between versions to avoid
 # hitting 404 on in-flight requests. Combines all files from new and old
 # version inside the asset_path.
@@ -82,7 +81,7 @@ builder:
   #
   # # Pass arguments and secrets to the Docker build process
   # args:
-  #   RUBY_VERSION: 3.3.8
+  #   RUBY_VERSION: 3.4.4
   # secrets:
   #   - GITHUB_TOKEN
   #   - RAILS_MASTER_KEY
