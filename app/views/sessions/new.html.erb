@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <%= render "application/messages" %>
+
+    <h2 class="mb-4">Sign in</h2>
+
+    <%= form_with url: session_path do |form| %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address], class: "form-control mb-3" %>
+      <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", class: "form-control mb-2" %>
+
+      <p class="mb-4">
+        <%= link_to "Forgot your password?", new_password_path, rel: "nofollow" %>
+      </p>
+
+      <%= form.submit "Sign in", class: "btn btn-primary" %>
+      <%= link_to "Don't have an account?", new_registration_path, rel: "nofollow", class: "btn ms-3", role: "button" %>
+    <% end %>
+  </div>
+</div>

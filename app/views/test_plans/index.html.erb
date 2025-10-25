@@ -1,0 +1,98 @@
+<div class="page-header mt-0 mb-4">
+  <%= render "application/messages" %>
+
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">Test plans list</h2>
+    </div>
+
+    <div class="col-auto d-print-none">
+      <div class="d-flex">
+        <div class="input-icon">
+          <%= form_with url: test_plans_path, method: :get do |form| %>
+            <%= form.text_field :search, class: "form-control", placeholder: "Search...", value: params[:search] %>
+          <% end %>
+
+          <span class="input-icon-addon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-1"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M21 21l-6 -6"/></svg>
+          </span>
+        </div>
+
+        <%= link_to "Add test plan", new_test_plan_path, class: "btn btn-primary ms-3" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% stats = TestPlan.stats %>
+
+<div class="row mb-3">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">Total tests</div>
+        <div class="h1"><%= stats[:total_test] %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">Tests executed</div>
+        <div class="h1"><%= stats[:execution_rate].round %>%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <div class="subheader">Tests passed</div>
+        <div class="h1"><%= stats[:success_rate].round %>%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <% if @test_plans.present? %>
+      <table class="table table-nowrap table-vcenter table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Product / Feature</th>
+            <th scope="col">Use case</th>
+            <th scope="col">Last run</th>
+            <th scope="col">Run at</th>
+            <th scope="col" class="d-print-none">Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @test_plans.each do |test_plan| %>
+            <tr>
+              <th scope="row"><%= test_plan.id %></th>
+              <td><%= truncate test_plan.feature %></td>
+              <td><%= truncate test_plan.use_case %></td>
+
+              <td>
+                <% if test_plan.last_run&.passed? %>
+                  <span class="status status-green">Passed</span>
+                <% elsif test_plan.last_run.present? %>
+                  <span class="status status-yellow">Failed</span>
+                <% end %>
+              </td>
+
+              <td><%= test_plan.last_run&.created_at&.strftime("%y/%m/%d %H:%M") %></td>
+              <td class="d-print-none"><%= link_to "Details", test_plan %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <%= render "application/empty_state" %>
+    <% end %>
+  </div>
+</div>

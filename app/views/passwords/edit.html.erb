@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <%= render "application/messages" %>
+
+    <h2 class="mb-4">Update password</h2>
+
+    <%= form_with url: password_path(params[:token]), method: :put do |form| %>
+      <%= form.password_field :password, required: true, autofocus: true, autocomplete: "new-password", placeholder: "Enter new password", class: "form-control mb-3" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Repeat new password", class: "form-control mb-4" %>
+
+      <%= form.submit "Update password", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

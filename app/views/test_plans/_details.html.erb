@@ -1,0 +1,53 @@
+<div class="card-body">
+  <p>
+    <strong>Test plan ID:</strong>
+    <%= test_plan.id %>
+  </p>
+</div>
+
+<div class="card-body">
+  <p>
+    <strong>Product / Feature:</strong>
+    <%= truncate_text ? truncate(test_plan.feature) : test_plan.feature %>
+  </p>
+</div>
+
+<div class="card-body">
+  <p>
+    <strong>Use case:</strong>
+    <%= truncate_text ? truncate(test_plan.use_case) : test_plan.use_case %>
+  </p>
+</div>
+
+<div class="card-body">
+  <p>
+    <strong>Steps to reproduce:</strong>
+
+    <ul class="mb-1">
+      <% test_plan.steps_to_reproduce_list.each do |step| %>
+        <li><%= truncate_text ? truncate(step) : step %></li>
+      <% end %>
+    </ul>
+  </p>
+</div>
+
+<div class="card-body">
+  <p>
+    <strong>Tests passed:</strong>
+    <span class="status status-green ms-1"><%= test_plan.success_rate.round %>%</span>
+  </p>
+</div>
+
+<div class="card-body">
+  <p>
+    <strong>Created at:</strong>
+    <%= test_plan.created_at.strftime("%y/%m/%d %H:%M") %>
+  </p>
+</div>
+
+<div class="card-body">
+  <p>
+    <strong>Updated at:</strong>
+    <%= test_plan.updated_at.strftime("%y/%m/%d %H:%M") %>
+  </p>
+</div>
