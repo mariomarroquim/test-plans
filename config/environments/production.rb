@@ -4,7 +4,7 @@ Rails.application.configure do
   # Log requests in a single line.
   config.lograge.enabled = true
   config.lograge.custom_payload do |controller|
-    { current_user_id: controller.current_user.try(:id) }
+    { current_user_id: Current.user.try(:id) }
   end
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -44,7 +44,7 @@ Rails.application.configure do
   config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
-  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "error")
 
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
