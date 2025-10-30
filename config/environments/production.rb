@@ -69,14 +69,15 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.smtp_settings = {
+    domain: ENV.fetch("EMAIL_ADDRESS") { "admin@example.com" }.split("@").last,
     address: ENV.fetch("EMAIL_SERVER") { "smtp.example.com" },
     port: ENV.fetch("EMAIL_PORT") { "587" },
     user_name: ENV.fetch("EMAIL_USER_NAME") { "admin@example.com" },
     password: ENV.fetch("EMAIL_PASSWORD") { "password" },
-    authentication: "login",
     enable_starttls_auto: true,
-    open_timeout: 30,
-    read_timeout: 30
+    authentication: "plain",
+    open_timeout: 5,
+    read_timeout: 5
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
