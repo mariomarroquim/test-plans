@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<% stats = TestPlan.stats %>
+<% stats = TestPlan.stats_for(Current.user) %>
 
 <div class="row mb-3">
   <div class="col-md-4">

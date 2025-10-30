@@ -6,8 +6,8 @@ class TestPlan < ApplicationRecord
   validates :use_case, uniqueness: { scope: :feature }, allow_blank: true
   validate :user_has_unlimited_test_plans, on: :create
 
-  def self.stats
-    all_test_plans = self.all
+  def self.stats_for(user)
+    all_test_plans = self.where(user: user).all
     test_plans_with_runs = all_test_plans.select { |it| it.last_run.present? }
     test_plans_with_successful_runs = test_plans_with_runs.select { |it| it.last_run.passed? }
 
