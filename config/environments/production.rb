@@ -61,7 +61,7 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "testdb.up.railway.app" }
@@ -71,7 +71,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: ENV.fetch("EMAIL_SERVER") { "smtp.example.com" },
     port: ENV.fetch("EMAIL_PORT") { "587" },
-    user_name: ENV.fetch("EMAIL_USER") { "admin@example.com" },
+    user_name: ENV.fetch("EMAIL_USER_NAME") { "admin@example.com" },
     password: ENV.fetch("EMAIL_PASSWORD") { "password" },
     authentication: "login",
     enable_starttls_auto: true,
