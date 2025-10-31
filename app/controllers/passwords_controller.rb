@@ -7,7 +7,7 @@ class PasswordsController < ApplicationController
 
   def create
     if user = User.find_by(email_address: params[:email_address])
-      PasswordsMailer.reset(user).deliver_later
+      # PasswordsMailer.reset(user).deliver_later
     end
 
     redirect_to new_session_url, notice: "Password update instructions sent (if an account with that email address exists)."
