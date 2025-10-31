@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  MAX_TEST_PLANS_PER_FREE_USER = 3
+  MAX_TEST_PLANS_PER_FREE_USER = 5
 
   UPGRADE_TO_PRO_MESSAGE = "You have reached the max. of #{MAX_TEST_PLANS_PER_FREE_USER} free test plans. <a href='https://testdb.gumroad.com/l/subscribe'>Upgrade</a> to Pro to continue.".html_safe
 

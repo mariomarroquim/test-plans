@@ -26,7 +26,7 @@
 
 <% stats = TestPlan.stats_for(Current.user) %>
 
-<div class="row mb-3">
+<div class="row row-deck mb-3">
   <div class="col-md-4">
     <div class="card">
       <div class="card-body">
@@ -36,6 +36,8 @@
     </div>
   </div>
 
+  <p class="d-md-none"></p>
+
   <div class="col-md-4">
     <div class="card">
       <div class="card-body">
@@ -44,6 +46,8 @@
       </div>
     </div>
   </div>
+
+  <p class="d-md-none"></p>
 
   <div class="col-md-4">
     <div class="card">
