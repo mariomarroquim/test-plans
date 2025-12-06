@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <%= render "application/messages" %>
+
+    <h2 class="mb-4">Sign up. It is free!</h2>
+
+    <%= form_for @user, url: registrations_path do |form| %>
+      <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: @user.email_address, class: "form-control mb-3" %>
+      <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Enter new password", class: "form-control mb-3" %>
+      <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Repeat new password", class: "form-control mb-4" %>
+
+      <%= form.submit "Sign up", class: "btn btn-primary" %>
+      <%= link_to "Have an account?", new_session_path, rel: "nofollow", class: "btn ms-3", role: "button" %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="page-header mt-0 mb-4">
+  <%= render "application/messages" %>
+
+  <div class="row align-items-center">
+    <div class="col">
+      <h2 class="page-title">Test run details</h2>
+    </div>
+
+    <div class="col-auto d-print-none">
+      <div class="d-flex">
+        <%= link_to "Export", "#", onclick: "window.print()", class: "btn btn-outline-primary ms-3" %>
+        <%= link_to "Update", edit_test_run_path(@test_run), class: "btn btn-primary ms-3" %>
+        <%= button_to "Remove", @test_run, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger ms-3" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <%= render "test_plans/details", test_plan: @test_run.test_plan, truncate_text: true %>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <p>
+          <strong>Test run ID:</strong>
+          <%= @test_run.id %>
+        </p>
+      </div>
+
+      <div class="card-body">
+        <p>
+          <strong>Release / branch:</strong>
+          <%= truncate @test_run.revision %>
+        </p>
+      </div>
+
+      <div class="card-body">
+        <p>
+          <strong>Observations:</strong>
+        </p>
+
+        <%= simple_format(@test_run.observations) if @test_run.observations.present? %>
+      </div>
+
+      <div class="card-body">
+        <p>
+          <strong>Result:</strong>
+
+          <% if @test_run.passed? %>
+            <span class="status status-green">Passed</span>
+          <% else %>
+            <span class="status status-yellow">Failed</span>
+          <% end %>
+        </p>
+      </div>
+
+      <div class="card-body">
+        <p>
+          <strong>Run at:</strong>
+          <%= @test_run.created_at.strftime("%y/%m/%d %H:%M") %>
+        </p>
+      </div>
+
+      <div class="card-body">
+        <p>
+          <strong>Updated at:</strong>
+          <%= @test_run.updated_at.strftime("%y/%m/%d %H:%M") %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

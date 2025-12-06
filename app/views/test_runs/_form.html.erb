@@ -1,0 +1,15 @@
+<%= form_with(model: test_run) do |form| %>
+  <%= form.hidden_field :test_plan_id, value: params[:test_plan_id].presence || test_run.test_plan_id %>
+  <%= form.text_field :revision, required: true, autofocus: true, placeholder: "Enter the release / branch", class: "form-control mb-3" %>
+  <%= form.text_area :observations, placeholder: "Enter your observations", rows: 5, class: "form-control mb-3" %>
+
+  <div class="mb-4">
+    <label class="form-check form-switch">
+      <%= form.checkbox :passed, class: "form-check-input" %>
+      <span class="form-check-label">Test passed?</span>
+    </label>
+  </div>
+
+  <%= form.submit "Add test run", class: "btn btn-primary" if test_run.new_record? %>
+  <%= form.submit "Update test run", class: "btn btn-primary" if test_run.persisted? %>
+<% end %>

@@ -1,0 +1,8 @@
+<%= form_with(model: test_plan) do |form| %>
+  <%= form.text_field :feature, required: true, autofocus: true, placeholder: "Enter the product / feature name", class: "form-control mb-3" %>
+  <%= form.text_field :use_case, required: true, placeholder: "Enter the use case", class: "form-control mb-3" %>
+  <%= form.text_area :steps_to_reproduce, required: true, placeholder: "List the steps to reproduce it (one per line).\n\nExample:\nAccess http://www.example.com/sign-in\nEnter user admin and password 123\nClick once at the Submit button\nCheck if you are logged in", rows: 10, class: "form-control mb-4" %>
+
+  <%= form.submit "Add test plan", class: "btn btn-primary" if test_plan.new_record? %>
+  <%= form.submit "Update test plan", class: "btn btn-primary" if test_plan.persisted? %>
+<% end %>

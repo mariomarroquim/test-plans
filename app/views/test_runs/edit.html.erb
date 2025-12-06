@@ -1,0 +1,15 @@
+<%= render "application/messages" %>
+
+<h2 class="mb-4">Update test run</h2>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <%= render "test_plans/details", test_plan: @test_run.test_plan, truncate_text: true %>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <%= render "form", test_run: @test_run %>
+  </div>
+</div>
