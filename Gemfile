@@ -72,4 +72,4 @@ group :production do
 end
 gem "paper_trail"
 
-gem "appsignal", "~> 4.7"
+gem "appsignal", "~> 4.8"
