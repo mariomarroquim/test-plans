@@ -15,25 +15,25 @@ class TestRunsController < ApplicationController
     @test_run = Current.user.test_runs.new(test_run_params)
 
     if @test_run.save
-      redirect_to @test_run, notice: "Test run was successfully created."
+      redirect_to @test_run, notice: "Test run was created."
     else
       flash.now[:alert] = "#{@test_run.errors.full_messages.join(", ")}."
-      render :new, status: :unprocessable_content
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @test_run.update(test_run_params)
-      redirect_to @test_run, notice: "Test run was successfully updated.", status: :see_other
+      redirect_to @test_run, notice: "Test run was updated.", status: :see_other
     else
       flash.now[:alert] = "#{@test_run.errors.full_messages.join(", ")}."
-      render :edit, status: :unprocessable_content
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @test_run.destroy!
-    redirect_to @test_run.test_plan, notice: "Test run was successfully destroyed.", status: :see_other
+    redirect_to @test_run.test_plan, notice: "Test run was removed.", status: :see_other
   end
 
   private
@@ -43,6 +43,6 @@ class TestRunsController < ApplicationController
   end
 
   def test_run_params
-    params.expect(test_run: [ :test_plan_id, :revision, :passed, :observations ])
+    params.expect(test_run: %i[ test_plan_id revision passed observations ])
   end
 end

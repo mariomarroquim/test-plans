@@ -19,7 +19,7 @@ class TestPlansController < ApplicationController
   end
 
   def new
-    flash.now[:info] = "Please, avoid using Production data. Use only testing data."
+    flash.now[:info] = "Please avoid using production data. Use only testing data."
 
     if params[:test_plan_id].present?
       original_test_plan = Current.user.test_plans.find(params[:test_plan_id])
@@ -36,25 +36,25 @@ class TestPlansController < ApplicationController
     @test_plan = Current.user.test_plans.new(test_plan_params)
 
     if @test_plan.save
-      redirect_to @test_plan, notice: "Test plan was successfully created."
+      redirect_to @test_plan, notice: "Test plan was created."
     else
       flash.now[:alert] = "#{@test_plan.errors.full_messages.join(", ").html_safe}."
-      render :new, status: :unprocessable_content
+      render :new, status: :unprocessable_entity
     end
   end
 
   def update
     if @test_plan.update(test_plan_params)
-      redirect_to @test_plan, notice: "Test plan was successfully updated.", status: :see_other
+      redirect_to @test_plan, notice: "Test plan was updated.", status: :see_other
     else
       flash.now[:alert] = "#{@test_plan.errors.full_messages.join(", ")}."
-      render :edit, status: :unprocessable_content
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @test_plan.destroy!
-    redirect_to test_plans_path, notice: "Test plan was successfully destroyed.", status: :see_other
+    redirect_to test_plans_path, notice: "Test plan was removed.", status: :see_other
   end
 
   private
@@ -64,6 +64,6 @@ class TestPlansController < ApplicationController
   end
 
   def test_plan_params
-    params.expect(test_plan: [ :feature, :use_case, :steps_to_reproduce ])
+    params.expect(test_plan: %i[ feature use_case steps_to_reproduce ])
   end
 end

@@ -6,17 +6,17 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to after_authentication_url, notice: "Your account was changed.", status: :see_other
+      redirect_to after_authentication_url, notice: "Your password was updated.", status: :see_other
     else
       flash.now[:alert] = "The passwords did not match."
-      render :edit, status: :unprocessable_content
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     terminate_session
 
-    Current.user.destroy!
+    @user.destroy!
 
     redirect_to new_session_url, notice: "Your account was removed."
   end
