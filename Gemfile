@@ -70,6 +70,5 @@ end
 group :production do
   gem "lograge"
 end
-gem "paper_trail"
 
-gem "appsignal", "~> 4.7"
+gem "paper_trail"
