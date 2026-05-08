@@ -1,24 +1,11 @@
-# README
+# TestDB
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+TestDB is a web application that helps you manage and organize test plans and runs in one place—grouped by product or feature and use case. You can document test runs by release or branch, export evidence, and keep everything structured in one workspace. Think of TestDB as a powerful, secure, and fast "Excel for QA." Its intuitive interface makes it easy to organize and track test plans, handle large suites reliably, and produce reports that turn testing from routine work into a real competitive advantage.
 
-Things you may want to cover:
+## Instructions
 
-* Ruby version
+This is a standard Ruby on Rails web application. Run `bin/setup`, then open [http://localhost:3000](http://localhost:3000).
 
-* System dependencies
+## Support
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can contact me at mariomarroquim@gmail.com.
