@@ -4,7 +4,7 @@ Rails.application.configure do
   # Log requests in a single line.
   config.lograge.enabled = true
   config.lograge.custom_payload do |controller|
-    { current_user_id: Current.user.try(:id) }
+    { current_user_id: controller.current_user&.id }
   end
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -31,20 +31,20 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Assume all access to the app is happening through a SSL-terminating reverse proxy.
-  config.assume_ssl = true
+  # config.assume_ssl = true
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  # config.force_ssl = true
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [ :request_id ]
-  config.logger = ActiveSupport::TaggedLogging.logger(STDOUT)
+  config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
 
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
-  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "error")
+  # Change to "debug" to log everything (including potentially personally-identifiable information!).
+  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
@@ -53,20 +53,19 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
 
   # Replace the default in-process memory cache store with a durable alternative.
-  config.cache_store = :solid_cache_store
+  # config.cache_store = :mem_cache_store
 
   # Replace the default in-process and non-durable queuing backend for Active Job.
-  config.active_job.queue_adapter = :solid_queue
-  config.solid_queue.connects_to = { database: { writing: :queue } }
+  # config.active_job.queue_adapter = :resque
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "example.com" }
 
-  # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
+  # Specify outgoing SMTP server. Remember to add smtp/* credentials via bin/rails credentials:edit.
   # config.action_mailer.smtp_settings = {
   #   user_name: Rails.application.credentials.dig(:smtp, :user_name),
   #   password: Rails.application.credentials.dig(:smtp, :password),
