@@ -6,10 +6,3 @@ one:
   revision: MyString
   passed: false
   observations: MyText
-
-two:
-  user: two
-  test_plan: two
-  revision: MyString
-  passed: false
-  observations: MyText

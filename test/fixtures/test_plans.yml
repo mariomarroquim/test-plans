@@ -5,9 +5,3 @@ one:
   feature: MyString
   use_case: MyString
   steps_to_reproduce: MyText
-
-two:
-  user: two
-  feature: MyString
-  use_case: MyString
-  steps_to_reproduce: MyText
